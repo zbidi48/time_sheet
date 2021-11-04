@@ -23,16 +23,27 @@
 
 		<h:panelGroup columns="2">
 			<h:form>
-				<table>
+				<p id="mydesc">table xhtml</p>
+				<table aria-describedby="mydesc">
+					<tr>
+						<th scope="col">Mot de Passe</th>
+						<th scope="col">Nom</th>
+
+						<th scope="col">Prenom</th>
+						<th scope="col">Actif / Inactif</th>
+						<th scope="col">Actif / Inactif</th>
+						<th scope="col">Ajouter Employé</th>
+
+					</tr>
+
 					<tr>
 						<td><h:outputText value="Login (Email)"></h:outputText></td>
-						<td>
-<h:inputText id="validateMail" required="true" validatorMessage="Le format du mail est invalide!" requiredMessage="Mail obligatoire!" value="#{employeController.email}">
-<f:validateRegex pattern=".+\@.+\..+" /> 
-</h:inputText> 
-<h:message for="validateMail" />
-								
-								</td>
+						<td><h:inputText id="validateMail" required="true"
+								validatorMessage="Le format du mail est invalide!"
+								requiredMessage="Mail obligatoire!"
+								value="#{employeController.email}">
+								<f:validateRegex pattern=".+\@.+\..+" />
+							</h:inputText> <h:message for="validateMail" /></td>
 					</tr>
 					<tr>
 						<td><h:outputText value="Mot de Passe"></h:outputText></td>
