@@ -90,20 +90,32 @@ public class EmployeServiceImpl implements IEmployeService {
 	}
 
 	public void affecterContratAEmploye(int contratId, int employeId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
+		Contrat c = null;
+		Optional<Contrat> contratManagedEntity = contratRepoistory.findById(contratId);
+		if(contratManagedEntity.isPresent())
+		{
+			 c = contratManagedEntity.get();
+		}
+		
+		Employe e = null;
+		Optional<Employe> employeManagedEntity = employeRepository.findById(employeId);
+		if(employeManagedEntity.isPresent())
+		{
+			 e = employeManagedEntity.get();
+		}
+		
 
-		contratManagedEntity.setEmploye(employeManagedEntity);
-		contratRepoistory.save(contratManagedEntity);
+		c.setEmploye(e);
+		contratRepoistory.save(c);
 
 	}
 
 	public String getEmployePrenomById(int employeId) {
 
-		Employe employeManagedEntity = employeRepository.findById(employeId);
+		Optional<Employe> employeManagedEntity = employeRepository.findById(employeId);
 		if (employeManagedEntity.isPresent()) {
-			employeManagedEntity.get();
-			return employeManagedEntity.getPrenom();
+			Employe e = employeManagedEntity.get();
+			return e.getPrenom();
 		} else {
 			return "not found";
 		}

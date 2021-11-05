@@ -84,7 +84,7 @@ public class TimesheetServiceImpl implements ITimesheetService {
 		timesheet.setValide(true);
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		System.out.println("dateDebut : " + dateFormat.format(timesheet.getTimesheetPK().getDateDebut()));
+		//
 
 	}
 
