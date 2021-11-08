@@ -1,14 +1,9 @@
-package tn.esprit.spring.entities;
+package tn.esprit.spring.dto;
 
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Embeddable;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-@Embeddable
-public class TimesheetPK implements Serializable {
+public class TimesheetPKDto implements Serializable {
 
 	private static final long serialVersionUID = 5377539445871317492L;
 
@@ -16,18 +11,15 @@ public class TimesheetPK implements Serializable {
 
 	private int idEmploye;
 
-	// Choisir le TemporalType selon le besoin metier
-	@Temporal(TemporalType.DATE)
 	private Date dateDebut;
 
-	@Temporal(TemporalType.DATE)
 	private Date dateFin;
 
-	public TimesheetPK() {
+	public TimesheetPKDto() {
 		super();
 	}
 
-	public TimesheetPK(int idMission, int idEmploye, Date dateDebut, Date dateFin) {
+	public TimesheetPKDto(int idMission, int idEmploye, Date dateDebut, Date dateFin) {
 		super();
 		this.idMission = idMission;
 		this.idEmploye = idEmploye;
@@ -59,22 +51,25 @@ public class TimesheetPK implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TimesheetPK other = (TimesheetPK) obj;
+
+		TimesheetPKDto other = (TimesheetPKDto) obj;
 		if (dateDebut == null) {
 			if (other.dateDebut != null)
 				return false;
 		} else if (!dateDebut.equals(other.dateDebut))
 			return false;
+
 		if (dateFin == null) {
 			if (other.dateFin != null)
 				return false;
 		} else if (!dateFin.equals(other.dateFin))
 			return false;
-		if (idEmploye != other.idEmploye)
+
+		if (idEmploye != other.idEmploye) {
 			return false;
-		
-		
-		return (idMission == other.idMission) ;
+		}
+
+		return (idMission == other.idMission);
 	}
 
 	public void setIdMission(int idMission) {

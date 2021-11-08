@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.entities.Contrat;
+import tn.esprit.spring.converters.DtoToEntities;
+import tn.esprit.spring.dto.ContratDto;
+import tn.esprit.spring.dto.EmployeDto;
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.entities.Entreprise;
 import tn.esprit.spring.entities.Mission;
@@ -34,9 +36,9 @@ public class RestControlEmploye {
 
 	@PostMapping("/ajouterEmployer")
 	@ResponseBody
-	public Employe ajouterEmploye(@RequestBody Employe employe) {
-		iemployeservice.addOrUpdateEmploye(employe);
-		return employe;
+	public Employe ajouterEmploye(@RequestBody EmployeDto employe) {
+		iemployeservice.addOrUpdateEmploye(DtoToEntities.employeDtoToEmployeEntity(employe));
+		return DtoToEntities.employeDtoToEmployeEntity(employe);
 	}
 
 	@PutMapping(value = "/modifyEmail/{id}/{newemail}")
@@ -60,8 +62,8 @@ public class RestControlEmploye {
 
 	@PostMapping("/ajouterContrat")
 	@ResponseBody
-	public int ajouterContrat(@RequestBody Contrat contrat) {
-		iemployeservice.ajouterContrat(contrat);
+	public int ajouterContrat(@RequestBody ContratDto contrat) {
+		iemployeservice.ajouterContrat(DtoToEntities.contratDtoToContratEntity(contrat));
 		return contrat.getReference();
 	}
 

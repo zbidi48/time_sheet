@@ -1,72 +1,42 @@
-package tn.esprit.spring.entities;
+package tn.esprit.spring.dto;
+
 
 import java.io.Serializable;
 import java.util.List;
 
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-@Entity
-public class Employe implements Serializable {
+public class EmployeDto implements Serializable {
 	
 	private static final long serialVersionUID = -1396669830860400871L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+
 	private int id;
 	
 	private String prenom;
 	
 	private String nom;
-	
-	//@Column(unique=true)
-	//@Pattern(regex=".+\@.+\..+")
+
 	private String email;
 
 	private String password;
 	
 	private boolean actif;
 	
-	@Enumerated(EnumType.STRING)
-	//@NotNull
-	private Role role;
+	private RoleDto role;
 	
-	//@JsonBackReference  
-	@JsonIgnore
-	@ManyToMany(mappedBy="employes",fetch=FetchType.EAGER )
-	//@NotNull
-	private List<Departement> departements;
+	private List<DepartementDto> departements;
 	
-	@JsonIgnore
-	//@JsonBackReference
-	@OneToOne(mappedBy="employe")
-	private Contrat contrat;
+	private ContratDto contrat;
 	
-	@JsonIgnore
-	//@JsonBackReference
-	@OneToMany(mappedBy="employe")
-	private List<Timesheet> timesheets;
+	private List<TimesheetDto> timesheets;
 	
 	
-	public Employe() {
+	public EmployeDto() {
 		super();
 	}
 	
 		
-	public Employe(int id, String prenom, String nom, String email, String password, boolean actif, Role role) {
+	public EmployeDto(int id, String prenom, String nom, String email, String password, boolean actif, RoleDto role) {
 		super();
 		this.id = id;
 		this.prenom = prenom;
@@ -79,7 +49,7 @@ public class Employe implements Serializable {
 
 
 
-	public Employe(String nom, String prenom, String email, String password, boolean actif, Role role) {
+	public EmployeDto(String nom, String prenom, String email, String password, boolean actif, RoleDto role) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -88,7 +58,7 @@ public class Employe implements Serializable {
 		this.role = role;
 	}
 	
-	public Employe(String nom, String prenom, String email, boolean actif, Role role) {
+	public EmployeDto(String nom, String prenom, String email, boolean actif, RoleDto role) {
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -149,35 +119,35 @@ public class Employe implements Serializable {
 	}
 
 
-	public Role getRole() {
+	public RoleDto getRole() {
 		return role;
 	}
 
-	public void setRole(Role role) {
+	public void setRole(RoleDto role) {
 		this.role = role;
 	}
 
-	public List<Departement> getDepartements() {
+	public List<DepartementDto> getDepartements() {
 		return departements;
 	}
 
-	public void setDepartements(List<Departement> departement) {
+	public void setDepartements(List<DepartementDto> departement) {
 		this.departements = departement;
 	}
 
-	public Contrat getContrat() {
+	public ContratDto getContrat() {
 		return contrat;
 	}
 
-	public void setContrat(Contrat contrat) {
+	public void setContrat(ContratDto contrat) {
 		this.contrat = contrat;
 	}
 
-	public List<Timesheet> getTimesheets() {
+	public List<TimesheetDto> getTimesheets() {
 		return timesheets;
 	}
 
-	public void setTimesheets(List<Timesheet> timesheets) {
+	public void setTimesheets(List<TimesheetDto> timesheets) {
 		this.timesheets = timesheets;
 	}
 
